@@ -19,8 +19,10 @@ const Modal = ({ isShowForm, errors, setIsShowForm, register, handleSubmit, subm
   }
 
   return (
-    <section className={`fixed top-0 left-0 bottom-0 right-0 bg-black/40 flex justify-center items-center transition-opacity ${isShowForm ? "opacity-100 visible" : " opacity-0 invisible"}`}>
-      <form onSubmit={handleSubmit(submit)} className='bg-white p-4 grid gap-4 w-[300px] relative  '>
+    <section className={` fixed top-0 left-0 bottom-0 right-0 bg-black/40 flex justify-center items-center transition-opacity ${isShowForm ? "opacity-100 visible" : " opacity-0 invisible"}`}>
+      <form onSubmit={handleSubmit(submit)} className='form-modal bg-white p-4 grid gap-4 w-[300px]   relative'>
+        <div className=''>
+
         <h3 className='text-2xl font-bold'>{isUserIdToEdit ? "Editar usuario" : "Nuevo usuario"}</h3>
         <div className='grid gap-1'>
           <label className='text-xs font-semibold' htmlFor="first_name">Nombre: </label>
@@ -58,8 +60,9 @@ const Modal = ({ isShowForm, errors, setIsShowForm, register, handleSubmit, subm
             })} />
           <span>{errors.image_url && errors.image_url.message}</span>
         </div>
-        <i onClick={handleClickCloseModal} className='bx bx-x absolute top-2 right-2 text-2xl hover:text-red-500 cursor-pointer'></i>
+        <i onClick={handleClickCloseModal} className='bx bx-x absolute top-2 right-2 text-2xl hover:text-red-500 '></i>
         <button className='bg-purple-p text-white p-2 hover:bg-purple-p/90 transition-colors'>{isUserIdToEdit ? "Guardar cambios" : "Agregar nuevo"} usuario</button>
+        </div>
       </form>
     </section>
 

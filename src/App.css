@@ -1,0 +1,9 @@
+@media (max-height:600px) {
+  .form-modal{
+    top: 25px;
+    height:300px;
+    overflow:scroll;
+  }
+
+
+}
