@@ -134,7 +134,7 @@ function App() {
 
 
   return (
-    <main className='font-sans bg-[url(/images/5.jpg)] dark:bg-[url(/images/2.jpg)]  bg-cover min-h-screen'>
+    <main className='font-sans bg-[url(/images/5.jpg)] dark:bg-[url(/images/3.jpg)]  bg-cover min-h-screen'>
       <Header setIsShowForm={setIsShowForm}
         setIsDark={setIsDark}
         isDark={isDark}

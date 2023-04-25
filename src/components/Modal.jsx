@@ -61,7 +61,7 @@ const Modal = ({ isShowForm, errors, setIsShowForm, register, handleSubmit, subm
           <span>{errors.image_url && errors.image_url.message}</span>
         </div>
         <i onClick={handleClickCloseModal} className='bx bx-x absolute top-2 right-2 text-2xl hover:text-red-500 '></i>
-        <button className='bg-purple-p text-white p-2 hover:bg-purple-p/90 transition-colors'>{isUserIdToEdit ? "Guardar cambios" : "Agregar nuevo"} usuario</button>
+        <button className='bg-purple-p text-white p-2 w-full hover:bg-purple-p/90 transition-colors'>{isUserIdToEdit ? "Guardar cambios" : "Agregar nuevo"} usuario</button>
         </div>
       </form>
     </section>
