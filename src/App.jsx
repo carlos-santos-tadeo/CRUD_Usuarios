@@ -97,7 +97,7 @@ function App() {
 
   function alertEditUser(data) {
     Swal.fire({
-        title: '¿Esta seguro de guardar cambios?',
+        title: '¿Está seguro de guardar cambios?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
