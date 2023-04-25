@@ -5,9 +5,9 @@ const UserCard = ({ user, deleteUser, handleClickEdit }) => {
 
 
   function alertDeleteUser(userId, firstName, lastName) {
-    const user = firstName + lastName
+    const user = firstName + " " + lastName
     Swal.fire({
-      title: '¿Esta seguro de eliminar a: \n ' + user + "?",
+      title: '¿Está seguro de eliminar a: \n ' + user + "?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
