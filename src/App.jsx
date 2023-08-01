@@ -1,16 +1,15 @@
-import { useEffect, useState } from 'react'
-import './App.css'
-import axios from 'axios'
-import Swal from 'sweetalert2'
-import Modal from './components/Modal'
-import Header from './components/Header'
-import { useForm } from 'react-hook-form'
-import UserList from './components/UserList'
-import { data } from 'autoprefixer'
-
+import { useEffect, useState } from "react";
+import "./App.css";
+import axios from "axios";
+import Swal from "sweetalert2";
+import Modal from "./components/Modal";
+import Header from "./components/Header";
+import { useForm } from "react-hook-form";
+import UserList from "./components/UserList";
+import { data } from "autoprefixer";
 
 function App() {
-  const BASE_URL = "https://users-crud.academlo.tech"
+  const BASE_URL = "https://users-crud.academlo.tech";
 
   const DEFAULT_VALUES = {
     first_name: "",
@@ -22,51 +21,55 @@ function App() {
   };
 
   const [isDark, setIsDark] = useState(false);
-  const [isShowForm, setIsShowForm] = useState(false)
-  const [users, setUsers] = useState([])
-  const [isUserIdToEdit, setIsUserIdToEdit] = useState()
+  const [isShowForm, setIsShowForm] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [isUserIdToEdit, setIsUserIdToEdit] = useState();
 
-
-  const { register, handleSubmit, reset, formState: { errors } } = useForm()
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const submit = (data) => {
-
     if (!data.birthday) {
-      data.birthday = null
+      data.birthday = null;
     }
 
     if (!data.image_url) {
-      data.image_url = null
+      data.image_url = null;
     }
 
     if (isUserIdToEdit) {
-      alertEditUser(data)
+      alertEditUser(data);
     } else {
-      createUser(data)
+      createUser(data);
     }
-
-  }
+  };
 
   const createUser = (data) => {
-    const URL = BASE_URL + "/users/"
+    const URL = BASE_URL + "/users/";
 
-    axios.post(URL, data)
+    axios
+      .post(URL, data)
       .then(() => {
         getAllUsers();
-        reset(DEFAULT_VALUES)
-        alertCreateUser()
-        setIsShowForm(!isShowForm)
+        reset(DEFAULT_VALUES);
+        alertCreateUser();
+        setIsShowForm(!isShowForm);
       })
-      .catch((err) => console.log(err))
-  }
+      .catch((err) => console.log(err));
+  };
 
   const deleteUser = (id) => {
-    const URL = BASE_URL + `/users/${id}/`
+    const URL = BASE_URL + `/users/${id}/`;
 
-    axios.delete(URL)
+    axios
+      .delete(URL)
       .then(() => getAllUsers())
-      .catch((err) => console.log(err))
-  }
+      .catch((err) => console.log(err));
+  };
 
   const editUser = (data) => {
     const URL = BASE_URL + `/users/${isUserIdToEdit}/`;
@@ -74,68 +77,68 @@ function App() {
     axios
       .patch(URL, data)
       .then(() => {
-        getAllUsers()
-        reset(DEFAULT_VALUES)
-        setIsShowForm(!isShowForm)
+        getAllUsers();
+        reset(DEFAULT_VALUES);
+        setIsShowForm(!isShowForm);
       })
-      .catch((err) => console.log(err))
-  }
+      .catch((err) => console.log(err));
+  };
 
   const getAllUsers = () => {
-    const URL = BASE_URL + "/users/"
+    const URL = BASE_URL + "/users/";
 
-    axios.get(URL)
+    axios
+      .get(URL)
       .then((res) => setUsers(res.data))
-      .catch((err) => console.log(err))
-  }
+      .catch((err) => console.log(err));
+  };
 
   const handleClickEdit = (data) => {
-    setIsShowForm((isShowForm) => !isShowForm)
-    reset(data)
-    setIsUserIdToEdit(data.id)
-  }
+    setIsShowForm((isShowForm) => !isShowForm);
+    reset(data);
+    setIsUserIdToEdit(data.id);
+  };
 
   function alertEditUser(data) {
     Swal.fire({
-        title: '¿Está seguro de guardar cambios?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#6BA9B8',
-        confirmButtonText: 'Confirmar',
-        cancelButtonText:'Cancelar'
-      }).then((result) => {
-        if (result.isConfirmed) {   
-          editUser(data)          
-          Swal.fire({
-            title: "Cambios efectuados correctamente",
-            icon: 'success',
-          })                    
-        }
+      title: "¿Está seguro de guardar cambios?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#6BA9B8",
+      confirmButtonText: "Confirmar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        editUser(data);
+        Swal.fire({
+          title: "Cambios efectuados correctamente",
+          icon: "success",
+        });
+      }
     });
-  };
+  }
 
   function alertCreateUser() {
     Swal.fire({
       title: "Usuario Creado correctamente",
-      icon: 'success',
-    })
+      icon: "success",
+    });
   }
 
-  
   useEffect(() => {
-    getAllUsers()
+    getAllUsers();
     if (isDark) {
-      document.documentElement.classList.add('dark')
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark')
+      document.documentElement.classList.remove("dark");
     }
-  }, [isDark])
-
+  }, [isDark]);
 
   return (
-    <main className='font-sans bg-[url(/images/5.jpg)] dark:bg-[url(/images/3.jpg)]  bg-cover min-h-screen'>
-      <Header setIsShowForm={setIsShowForm}
+    <main className="font-sans bg-[#3672a0] duration-1000 dark:bg-[#1b1b1e]  bg-cover min-h-screen">
+      <Header
+        setIsShowForm={setIsShowForm}
         setIsDark={setIsDark}
         isDark={isDark}
       />
@@ -150,9 +153,13 @@ function App() {
         isUserIdToEdit={isUserIdToEdit}
         errors={errors}
       />
-      <UserList users={users} deleteUser={deleteUser} handleClickEdit={handleClickEdit} />
+      <UserList
+        users={users}
+        deleteUser={deleteUser}
+        handleClickEdit={handleClickEdit}
+      />
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
