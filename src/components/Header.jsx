@@ -11,7 +11,7 @@ const Header = ({ setIsShowForm, setIsDark, isDark }) => {
 
   return (
     <header className="flex justify-between px-6 pt-5 sm:py-5 md:mx-5 lg:mx-16 lg:py-12 pb-[5%]">
-      <h1 className="font-bold text-[20px] sm:text-3xl lg:text-5xl text-[#FCFAFA] dark:text-[#828688] rounded-md">
+      <h1 className="font-bold text-[20px] sm:text-3xl lg:text-5xl text-[#FCFAFA] dark:text-[#CCCCCC] rounded-md">
         Usuarios
       </h1>
       <div className=" flex flex-col gap-2">
