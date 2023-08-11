@@ -24,21 +24,24 @@ const UserCard = ({ user, deleteUser, handleClickEdit }) => {
   }
 
   return (
-    <article className="dark:bg-[#cccccc] duration-1000 bg-[#FCFAFA] mb-5 mt-5 grid justify-center rounded-[5px] font-sen mx-2 py-3 px-2">
-      <div className="py-3 mx-5 mb-5 duration-1000 bg-[#8BBCBC] dark:bg-[#828688] rounded-[5px] shadow-black/40 shadow-lg dark:shadow-3xl dark:shadow-black/70">
+    <article className="dark:bg-[#c0c0c0] duration-1000 bg-[#f5f5f5] mb-5 mt-5 grid justify-center rounded-[5px] font-sen mx-2 py-3 px-2">
+      <div className="py-3 mx-5 mb-5 duration-1000 bg-[#8BBCBC] dark:bg-[#3672A0] rounded-[5px] shadow-black/40 shadow-lg dark:shadow-3xl dark:shadow-black/70">
         <img
           className="w-[125px] h-[150px] object-cover mx-auto rounded-md"
           src={user.image_url ? user.image_url : "/images/noProfile.jpg"}
           alt="User image"
         />
       </div>
-      <h3 className="border-b-2 text-center font-semibold text-[#3672A0] dark:text-[#1B1B1E] text-lg border-[#74849E]">
+      <h3
+        className="border-b-2 text-center font-semibold text-[#3672A0] dark:text-[#1B1B1E] text-lg border-[#74849E]"
+        style={{ textShadow: "6px -3px 3px rgba(0, 0, 0, 0.2)" }}
+      >
         {user.first_name} {user.last_name}
       </h3>
       <ul className="flex flex-col gap-5 pt-6 pb-3">
         <li>
           <div className="flex justify-between w-[263px]">
-            <h4 className=" text-lg font-semibold text-[#74849E] dark:text-[#6B6A72]">
+            <h4 className=" text-lg font-semibold text-[#74849E] dark:text-[#3672A0]">
               Correo:{" "}
             </h4>
             <button
@@ -50,14 +53,17 @@ const UserCard = ({ user, deleteUser, handleClickEdit }) => {
               <i className=" text-xl bx bx-trash"></i>
             </button>
           </div>
-          <span className="font-semibold text-[#3672A0] dark:text-black">
+          <span
+            className="font-semibold text-[#3672A0] dark:text-black"
+            style={{ textShadow: "10px -4px 3px rgba(0, 0, 0, 0.2)" }}
+          >
             {user.email}
           </span>
           <hr className="border-[#74849E] border-[1px]" />
         </li>
         <li>
           <div className="flex justify-between">
-            <h4 className=" text-lg text-[#74849E] dark:text-[#6B6A72] font-semibold">
+            <h4 className=" text-lg text-[#74849E] dark:text-[#3672A0] font-semibold">
               Cumpleaños:{" "}
             </h4>
             <button
@@ -67,7 +73,10 @@ const UserCard = ({ user, deleteUser, handleClickEdit }) => {
               <i className="text-xl bx bx-pencil "></i>
             </button>
           </div>
-          <span className=" border-b-2 text-[#3672A0] dark:text-black border-[#74849E] font-semibold">
+          <span
+            className=" border-b-2 text-[#3672A0] dark:text-black border-[#74849E] font-semibold"
+            style={{ textShadow: "10px -2px 3px rgba(0, 0, 0, 0.2)" }}
+          >
             <i className="text-xl bx bx-gift "></i>
             {user.birthday}
           </span>

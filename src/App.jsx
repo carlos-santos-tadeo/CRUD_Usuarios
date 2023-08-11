@@ -1,4 +1,12 @@
 import { useEffect, useState } from "react";
+import {
+  BASE_URL,
+  DEFAULT_VALUES,
+  EMILIANO,
+  NIKOLA,
+  RONY,
+  JACKIE,
+} from "./constans.js";
 import "./App.css";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -7,18 +15,19 @@ import Header from "./components/Header";
 import { useForm } from "react-hook-form";
 import UserList from "./components/UserList";
 import { data } from "autoprefixer";
+import UsersDefault from "./components/UsersDefault.jsx";
 
 function App() {
-  const BASE_URL = "https://users-crud.academlo.tech";
+  // const BASE_URL = "https://users-crud.academlo.tech";
 
-  const DEFAULT_VALUES = {
-    first_name: "",
-    last_name: "",
-    email: "",
-    password: "",
-    birthday: "",
-    image_url: "",
-  };
+  // const DEFAULT_VALUES = {
+  //   first_name: "",
+  //   last_name: "",
+  //   email: "",
+  //   password: "",
+  //   birthday: "",
+  //   image_url: "",
+  // };
 
   const [isDark, setIsDark] = useState(false);
   const [isShowForm, setIsShowForm] = useState(false);
@@ -48,9 +57,15 @@ function App() {
     }
   };
 
+  const createDefaultUsers = () => {
+    createUser(EMILIANO);
+    createUser(RONY);
+    createUser(NIKOLA);
+    createUser(JACKIE);
+  };
+
   const createUser = (data) => {
     const URL = BASE_URL + "/users/";
-
     axios
       .post(URL, data)
       .then(() => {
@@ -133,6 +148,24 @@ function App() {
     } else {
       document.documentElement.classList.remove("dark");
     }
+    const hasFunctionExecuted = localStorage.getItem("hasFunctionExecuted");
+
+    if (!hasFunctionExecuted) {
+      // Aquí coloca la función que deseas ejecutar una sola vez
+      createDefaultUsers();
+
+      // Guarda la información en el almacenamiento local para que no se ejecute nuevamente
+      localStorage.setItem("hasFunctionExecuted", true);
+
+      //muestra mensaje
+      const timer = setTimeout(() => {
+        Swal.fire({
+          title:
+            "Al iniciar por primera vez la app se crean 4 usuarios por defecto",
+          icon: "success",
+        });
+      }, 1000);
+    }
   }, [isDark]);
 
   return (
@@ -153,11 +186,15 @@ function App() {
         isUserIdToEdit={isUserIdToEdit}
         errors={errors}
       />
-      <UserList
-        users={users}
-        deleteUser={deleteUser}
-        handleClickEdit={handleClickEdit}
-      />
+      {users.length === 0 ? (
+        <UsersDefault createDefaultUsers={createDefaultUsers} />
+      ) : (
+        <UserList
+          users={users}
+          deleteUser={deleteUser}
+          handleClickEdit={handleClickEdit}
+        />
+      )}
     </main>
   );
 }
