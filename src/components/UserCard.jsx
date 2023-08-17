@@ -24,8 +24,8 @@ const UserCard = ({ user, deleteUser, handleClickEdit }) => {
   }
 
   return (
-    <article className="dark:bg-[#c0c0c0] duration-1000 bg-[#f5f5f5] mb-5 mt-5 grid justify-center rounded-[5px] font-sen mx-2 py-3 px-2">
-      <div className="py-3 mx-5 mb-5 duration-1000 bg-[#8BBCBC] dark:bg-[#3672A0] rounded-[5px] shadow-black/40 shadow-lg dark:shadow-3xl dark:shadow-black/70">
+    <article className="dark:bg-[#c0c0c0] group duration-1000 bg-[#f5f5f5] mb-5 mt-5 grid justify-center rounded-[5px] font-sen mx-2 py-3 px-2">
+      <div className="py-3 mx-5 mb-5 duration-1000 dark:group-hover:bg-[#2b5555] group-hover:bg-[#3672A0]/80 bg-[#8BBCBC] dark:bg-[#2e6188] rounded-[5px] shadow-black/40 shadow-lg dark:shadow-3xl dark:shadow-black/70">
         <img
           className="w-[125px] h-[150px] object-cover mx-auto rounded-md"
           src={user.image_url ? user.image_url : "/images/noProfile.jpg"}
